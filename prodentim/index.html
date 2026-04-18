@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17961565555"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17961565555');
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ProDentim Review</title>
@@ -252,16 +260,7 @@
       width:100%;
     }
 
-    .result-wrap img{
-      width:100%;
-      max-width:640px;
-      margin:0 auto;
-      display:block;
-      border-radius:20px;
-      border:1px solid var(--line);
-      box-shadow:var(--shadow);
-    }
-
+    .result-wrap img,
     .review-wrap img{
       width:100%;
       max-width:640px;
@@ -420,7 +419,7 @@
   <nav class="nav">
     <div class="container nav-inner">
       <div class="logo">ProDentim</div>
-      <a class="nav-btn" href="https://prodentim24.com/text.php?aff=Saulohenri4">Order Now</a>
+      <a class="nav-btn btn-prod" href="https://prodentim24.com/text.php?aff=Saulohenri4">Order Now</a>
     </div>
   </nav>
 
@@ -450,7 +449,7 @@
             <div class="proof-item">60-Day Guarantee</div>
           </div>
 
-          <a class="cta" href="https://prodentim24.com/text.php?aff=Saulohenri4">Get My ProDentim Discount</a>
+          <a class="cta btn-prod" href="https://prodentim24.com/text.php?aff=Saulohenri4">Get My ProDentim Discount</a>
 
           <p style="text-align:center;margin-top:10px;color:#b42318;font-size:13px;font-weight:800;">
             Limited stock may be available at the discounted price today
@@ -499,7 +498,7 @@
         <div>
           <h2 class="section-title" style="text-align:left;margin-bottom:10px;">That’s Why We Created ProDentim</h2>
           <p style="font-size:15px;color:var(--muted);">ProDentim is designed to support healthier gums, fresher breath, and a cleaner-looking smile with a simple daily chew. This section is shorter on purpose, because mobile users do not read giant text walls.</p>
-          <a class="highlight-line" href="https://prodentim24.com/text.php?aff=Saulohenri4">Every ProDentim chew will support the good health of your gums and teeth.</a>
+          <a class="highlight-line btn-prod" href="https://prodentim24.com/text.php?aff=Saulohenri4">Every ProDentim chew will support the good health of your gums and teeth.</a>
         </div>
 
         <div>
@@ -513,10 +512,10 @@
     <div class="container result-wrap">
       <h2 class="section-title">Real Results</h2>
       <p class="section-sub">Bigger visual proof helps mobile visitors stop, pay attention and keep reading.</p>
-     <img src="../antes-dps.jpg" alt="Before and after teeth results" />
+      <img src="../antes-dps.jpg" alt="Before and after teeth results" />
 
       <div style="margin-top:18px;text-align:center;">
-        <a class="cta" href="https://prodentim24.com/text.php?aff=Saulohenri4" style="max-width:340px;margin:0 auto;">
+        <a class="cta btn-prod" href="https://prodentim24.com/text.php?aff=Saulohenri4" style="max-width:340px;margin:0 auto;">
           See Today’s Discount
         </a>
       </div>
@@ -574,7 +573,7 @@
       <div class="cta-box">
         <h2>Ready To Check Today’s ProDentim Offer?</h2>
         <p>Tap the button below and go to the official offer page now.</p>
-        <a class="cta-wide" href="https://prodentim24.com/text.php?aff=Saulohenri4">Check Today’s ProDentim Offer</a>
+        <a class="cta-wide btn-prod" href="https://prodentim24.com/text.php?aff=Saulohenri4">Check Today’s ProDentim Offer</a>
         <div class="tiny">Secure checkout • Fast access • Limited time offer</div>
       </div>
     </div>
@@ -585,5 +584,19 @@
       Affiliate disclosure: this page may generate a commission from qualifying purchases. Replace only the images if you want, because the structure is already tuned for mobile-first conversion.
     </div>
   </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var botoes = document.querySelectorAll(".btn-prod");
+
+      botoes.forEach(function(botao) {
+        botao.addEventListener("click", function() {
+          gtag("event", "conversion", {
+            'send_to': 'AW-17961565555/98brCNTlyZ4cEPP63vRC'
+          });
+        });
+      });
+    });
+  </script>
 </body>
 </html>
