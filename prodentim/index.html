@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProDentim Review</title>
+  <meta name="description" content="Mobile-first ProDentim review page built for conversions." />
+  <style>
+    :root{
+      --green:#0ea768;
+      --green-dark:#0a8c57;
+      --bg:#f4fbf8;
+      --text:#163038;
+      --muted:#5d737a;
+      --white:#ffffff;
+      --line:#d8e9e3;
+      --red:#ff5b52;
+      --shadow:0 14px 34px rgba(16, 24, 40, .08);
+      --radius:22px;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      background:linear-gradient(180deg,#f8fefd 0%,#f1faf7 100%);
+      color:var(--text);
+      line-height:1.55;
+    }
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+
+    .container{width:min(100% - 18px, 1120px);margin:0 auto}
+
+    .top-alert{
+      background:#0f172a;
+      color:#fff;
+      text-align:center;
+      padding:10px 12px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(255,255,255,.94);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(216,233,227,.9);
+    }
+
+    .nav-inner{
+      min-height:64px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+
+    .logo{
+      font-size:20px;
+      font-weight:900;
+      color:var(--green-dark);
+      letter-spacing:-.4px;
+    }
+
+    .nav-btn,
+    .cta,
+    .cta-wide{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
+      font-weight:900;
+      transition:.2s ease;
+    }
+
+    .nav-btn{
+      min-height:42px;
+      padding:0 18px;
+      background:linear-gradient(180deg,var(--red),#ef4444);
+      color:#fff;
+      font-size:14px;
+      box-shadow:0 10px 22px rgba(255,91,82,.22);
+    }
+
+    .cta,
+    .cta-wide{
+      background:linear-gradient(180deg,var(--green) 0%,var(--green-dark) 100%);
+      color:#fff;
+      box-shadow:0 14px 26px rgba(14,167,104,.26);
+    }
+
+    .cta{min-height:54px;padding:0 24px;font-size:17px;width:100%}
+    .cta-wide{min-height:58px;padding:0 24px;font-size:19px;width:100%}
+
+    .hero{
+      padding:18px 0 28px;
+    }
+
+    .hero-card{
+      background:linear-gradient(145deg,#e9f7f1 0%,#ffffff 100%);
+      border:1px solid var(--line);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .hero-content{
+      padding:18px 14px 18px;
+    }
+
+    .badge{
+      display:inline-block;
+      background:#e7faf1;
+      color:#0a8c57;
+      border:1px solid #c8eddc;
+      border-radius:999px;
+      padding:8px 12px;
+      font-size:12px;
+      font-weight:900;
+      margin-bottom:12px;
+    }
+
+    h1{
+      font-size:31px;
+      line-height:1.06;
+      letter-spacing:-.9px;
+      margin-bottom:12px;
+    }
+
+    .hero-text{
+      font-size:16px;
+      color:var(--muted);
+      margin-bottom:14px;
+    }
+
+    .hero-product{
+      padding:14px 14px 0;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .hero-product img{
+      width:min(100%, 320px);
+      object-fit:contain;
+      filter:drop-shadow(0 20px 34px rgba(15,23,42,.14));
+    }
+
+    .proof-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin:14px 0 16px;
+    }
+
+    .proof-item{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:12px 10px;
+      text-align:center;
+      font-size:12px;
+      font-weight:800;
+      color:#26434a;
+      box-shadow:var(--shadow);
+    }
+
+    .section{padding:26px 0}
+
+    .section-title{
+      text-align:center;
+      font-size:28px;
+      line-height:1.1;
+      letter-spacing:-.6px;
+      margin-bottom:10px;
+    }
+
+    .section-sub{
+      text-align:center;
+      color:var(--muted);
+      font-size:15px;
+      margin:0 auto 18px;
+      max-width:680px;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:16px;
+    }
+
+    .benefits{display:grid;gap:12px}
+
+    .benefit{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:14px;
+      box-shadow:var(--shadow);
+    }
+
+    .benefit-icon{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      background:#e9f7f1;
+      color:#0a8c57;
+      font-weight:900;
+      flex:0 0 auto;
+    }
+
+    .benefit strong{display:block;font-size:16px;margin-bottom:4px}
+    .benefit p{font-size:14px;color:var(--muted)}
+
+    .about-card{
+      display:grid;
+      gap:16px;
+      align-items:center;
+    }
+
+    .about-card img{
+      width:min(100%,240px);
+      margin:0 auto;
+      filter:drop-shadow(0 18px 30px rgba(15,23,42,.12));
+    }
+
+    .highlight-line{
+      display:block;
+      background:#0a8c57;
+      color:#fff;
+      text-align:center;
+      border-radius:14px;
+      padding:12px 14px;
+      font-size:14px;
+      font-weight:800;
+      margin-top:12px;
+    }
+
+    .result-wrap,
+    .review-wrap{
+      width:100%;
+    }
+
+    .result-wrap img{
+      width:100%;
+      max-width:640px;
+      margin:0 auto;
+      display:block;
+      border-radius:20px;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+    }
+
+    .review-wrap img{
+      width:100%;
+      max-width:640px;
+      margin:0 auto;
+      display:block;
+      border-radius:20px;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+    }
+
+    .review-note{
+      text-align:center;
+      margin-top:12px;
+      color:var(--muted);
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .guarantee{
+      background:linear-gradient(145deg,#e4f5ed 0%,#ffffff 100%);
+    }
+
+    .guarantee-card{
+      display:grid;
+      gap:16px;
+      align-items:center;
+      text-align:center;
+    }
+
+    .guarantee-badge{
+      width:132px;
+      height:132px;
+      margin:0 auto;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:radial-gradient(circle at 30% 30%, #1f6feb, #1549a7 55%, #0f3270 100%);
+      color:#fff;
+      font-weight:900;
+      line-height:1.05;
+      box-shadow:0 18px 34px rgba(31,111,235,.22);
+      font-size:20px;
+      padding:14px;
+    }
+
+    .guarantee-card h3{
+      font-size:26px;
+      line-height:1.1;
+      margin-bottom:8px;
+    }
+
+    .guarantee-card p{
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .final-cta{
+      padding:0 0 34px;
+    }
+
+    .cta-box{
+      background:linear-gradient(145deg,#0f172a 0%,#163345 100%);
+      color:#fff;
+      border-radius:28px;
+      box-shadow:0 22px 44px rgba(15,23,42,.16);
+      padding:20px 16px;
+      text-align:center;
+    }
+
+    .cta-box h2{
+      font-size:28px;
+      line-height:1.08;
+      margin-bottom:10px;
+      letter-spacing:-.7px;
+    }
+
+    .cta-box p{
+      color:rgba(255,255,255,.82);
+      font-size:15px;
+      margin-bottom:16px;
+    }
+
+    .tiny{
+      font-size:12px;
+      margin-top:12px;
+      color:rgba(255,255,255,.7);
+      font-weight:700;
+    }
+
+    .faq{display:grid;gap:12px}
+    .faq .card h3{font-size:18px;margin-bottom:6px}
+    .faq .card p{font-size:14px;color:var(--muted)}
+
+    footer{
+      padding:22px 0 34px;
+      text-align:center;
+      color:#6f8086;
+      font-size:12px;
+      line-height:1.7;
+    }
+
+    @media (max-width: 759px){
+      .section#results .container,
+      .section#reviews .container{
+        width:100%;
+        padding-left:10px;
+        padding-right:10px;
+      }
+
+      .section#results,
+      .section#reviews{
+        padding-top:22px;
+        padding-bottom:22px;
+      }
+
+      .result-wrap img,
+      .review-wrap img{
+        width:100%;
+        max-width:100%;
+        border-radius:18px;
+      }
+
+      .review-note{
+        font-size:13px;
+      }
+    }
+
+    @media (min-width: 760px){
+      .container{width:min(100% - 28px, 1120px)}
+      .top-alert{font-size:13px}
+      .hero-content{padding:26px}
+      h1{font-size:50px;max-width:780px}
+      .hero-text{font-size:19px;max-width:760px}
+      .hero-card{display:grid;grid-template-columns:1fr 1fr;align-items:center}
+      .hero-product{padding:26px}
+      .hero-product img{width:min(100%, 420px)}
+      .proof-grid{grid-template-columns:repeat(4,1fr)}
+      .section{padding:46px 0}
+      .section-title{font-size:42px}
+      .section-sub{font-size:18px;margin-bottom:26px}
+      .benefits{grid-template-columns:repeat(3,1fr)}
+      .about-card{grid-template-columns:1.1fr .9fr;padding:22px}
+      .guarantee-card{grid-template-columns:180px 1fr;text-align:left}
+      .cta-box{padding:32px}
+      .cta-box h2{font-size:42px}
+      .cta-box p{font-size:18px}
+      .faq{grid-template-columns:1fr 1fr}
+      .cta{width:auto;min-width:300px}
+      .cta-wide{width:auto;min-width:340px}
+    }
+  </style>
+</head>
+<body>
+  <div class="top-alert">LIMITED TIME OFFER • Check today’s discounted ProDentim package below</div>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="logo">ProDentim</div>
+      <a class="nav-btn" href="https://prodentim24.com/text.php?aff=Saulohenri4">Order Now</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <div class="hero-card">
+        <div class="hero-product">
+          <img src="prodentim.png" alt="ProDentim bottle" />
+        </div>
+
+        <div class="hero-content">
+          <div class="badge">3.5 Billion Probiotics • 60-Day Guarantee</div>
+
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
+            <span style="color:#f59e0b;font-size:16px;font-weight:900;">★★★★★</span>
+            <span style="font-size:13px;color:var(--muted);font-weight:700;">Trusted by thousands looking to improve daily oral care</span>
+          </div>
+
+          <h1>Support Stronger Gums, Fresher Breath And A Cleaner-Looking Smile With ProDentim</h1>
+
+          <p class="hero-text"><strong>ProDentim</strong> is a simple daily chew made with <strong>3.5 billion probiotics</strong> and carefully selected nutrients to support gum health, fresher breath and a more confident smile.</p>
+
+          <div class="proof-grid">
+            <div class="proof-item">Made In USA</div>
+            <div class="proof-item">Natural Formula</div>
+            <div class="proof-item">Easy Daily Chew</div>
+            <div class="proof-item">60-Day Guarantee</div>
+          </div>
+
+          <a class="cta" href="https://prodentim24.com/text.php?aff=Saulohenri4">Get My ProDentim Discount</a>
+
+          <p style="text-align:center;margin-top:10px;color:#b42318;font-size:13px;font-weight:800;">
+            Limited stock may be available at the discounted price today
+          </p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Why People Are Paying Attention To ProDentim</h2>
+      <p class="section-sub">Short blocks, stronger images and bigger buttons make this version much better for mobile traffic.</p>
+
+      <div class="benefits">
+        <div class="benefit">
+          <div class="benefit-icon">✓</div>
+          <div>
+            <strong>Helps Support Gum Health</strong>
+            <p>Built to support a healthier oral environment and everyday gum comfort.</p>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon">✓</div>
+          <div>
+            <strong>Promotes Fresher Breath</strong>
+            <p>Supports a cleaner mouth feel and more confidence throughout the day.</p>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon">✓</div>
+          <div>
+            <strong>Easy Daily Chewable Formula</strong>
+            <p>No complicated routine. Just a simple daily chew designed for convenience.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="card about-card">
+        <div>
+          <h2 class="section-title" style="text-align:left;margin-bottom:10px;">That’s Why We Created ProDentim</h2>
+          <p style="font-size:15px;color:var(--muted);">ProDentim is designed to support healthier gums, fresher breath, and a cleaner-looking smile with a simple daily chew. This section is shorter on purpose, because mobile users do not read giant text walls.</p>
+          <a class="highlight-line" href="https://prodentim24.com/text.php?aff=Saulohenri4">Every ProDentim chew will support the good health of your gums and teeth.</a>
+        </div>
+
+        <div>
+          <img src="prodentim.png" alt="ProDentim bottle close-up" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="results">
+    <div class="container result-wrap">
+      <h2 class="section-title">Real Results</h2>
+      <p class="section-sub">Bigger visual proof helps mobile visitors stop, pay attention and keep reading.</p>
+      <img src="antes-dps.jpg" alt="Before and after teeth results" />
+
+      <div style="margin-top:18px;text-align:center;">
+        <a class="cta" href="https://prodentim24.com/text.php?aff=Saulohenri4" style="max-width:340px;margin:0 auto;">
+          See Today’s Discount
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="reviews">
+    <div class="container review-wrap">
+      <h2 class="section-title">Verified Customer Reviews</h2>
+      <p class="section-sub">See why users are talking about ProDentim and why this formula is getting so much attention.</p>
+      <img src="review.jpg" alt="Verified customer review" />
+      <div class="review-note">Real user feedback adds stronger social proof before the click</div>
+    </div>
+  </section>
+
+  <section class="section guarantee">
+    <div class="container">
+      <div class="card guarantee-card">
+        <div class="guarantee-badge">60<br>DAYS</div>
+        <div>
+          <h3>100% Satisfaction 60-Day Money Back Guarantee</h3>
+          <p>Your order today is covered by a 60-day money-back guarantee. That gives colder traffic much more confidence before clicking the official page.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-sub">This helps remove objections before the click.</p>
+      <div class="faq">
+        <div class="card">
+          <h3>What is ProDentim?</h3>
+          <p>ProDentim is a daily chewable probiotic formula created to support healthier gums, fresher breath and a cleaner-looking smile.</p>
+        </div>
+        <div class="card">
+          <h3>How do I order?</h3>
+          <p>Click any button on this page to visit the official offer page and check the packages currently available.</p>
+        </div>
+        <div class="card">
+          <h3>Is there a guarantee?</h3>
+          <p>Yes. The offer highlights a 60-day money-back guarantee.</p>
+        </div>
+        <div class="card">
+          <h3>Why is this version better for phone traffic?</h3>
+          <p>It uses larger images, shorter text blocks, cleaner spacing and stronger buttons above and below the fold.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Ready To Check Today’s ProDentim Offer?</h2>
+        <p>Tap the button below and go to the official offer page now.</p>
+        <a class="cta-wide" href="https://prodentim24.com/text.php?aff=Saulohenri4">Check Today’s ProDentim Offer</a>
+        <div class="tiny">Secure checkout • Fast access • Limited time offer</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      Affiliate disclosure: this page may generate a commission from qualifying purchases. Replace only the images if you want, because the structure is already tuned for mobile-first conversion.
+    </div>
+  </footer>
+</body>
+</html>
