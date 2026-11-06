@@ -1,8 +1,8 @@
 """Check the continuous landing page, including images and all six sections."""
 from pathlib import Path
-import json
+import json, os
 from playwright.sync_api import sync_playwright
-BASE='http://127.0.0.1:8000';out=Path('/workspace/reports/mega7/landing-v2');out.mkdir(parents=True,exist_ok=True)
+BASE=os.environ.get('MEGA7_TEST_URL','http://127.0.0.1:8000');out=Path(os.environ.get('MEGA7_REPORT_DIR','/workspace/reports/mega7/v2-1/after'));out.mkdir(parents=True,exist_ok=True)
 checks=[]
 with sync_playwright() as p:
  b=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox'])
@@ -26,6 +26,10 @@ with sync_playwright() as p:
    assert cta['y']>=img['y']+img['height']
   assert page.locator('.premium-hero .button').get_attribute('href')=='https://prodentim24.com/text.php?aff=Saulohenri4'
   assert page.locator('main > section').count()==6
+  assert page.locator('.affiliate').count()==3
+  assert page.locator('#checklist img').count()==1
+  for link in page.locator('.affiliate').all():
+   assert link.bounding_box()['height']>=48
   assert page.evaluate('document.documentElement.scrollHeight>innerHeight*2')
   for section in page.locator('main > section').all():
    section.scroll_into_view_if_needed()

@@ -3,7 +3,7 @@ import json, os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 BASE=os.environ.get('MEGA7_TEST_URL','http://127.0.0.1:8000')
-OUT=Path(os.environ.get('MEGA7_REPORT_DIR','/workspace/reports/mega7')); OUT.mkdir(parents=True,exist_ok=True)
+OUT=Path(os.environ.get('MEGA7_REPORT_DIR','/workspace/reports/mega7/v2-1/after')); OUT.mkdir(parents=True,exist_ok=True)
 AFF='https://prodentim24.com/text.php?aff=Saulohenri4'
 results=[]
 with sync_playwright() as p:
@@ -27,7 +27,7 @@ with sync_playwright() as p:
    page.evaluate('window.scrollTo({top:0,behavior:"instant"})')
    images=page.locator('img').evaluate_all('(xs)=>xs.every(x=>x.complete&&x.naturalWidth>0)'); assert images
    if path=='/prodentim/':
-    links=page.locator('.affiliate'); assert links.count()==2
+    links=page.locator('.affiliate'); assert links.count()==3
     for link in links.all():
      assert link.get_attribute('href')==AFF
      assert 'sponsored' in link.get_attribute('rel')
@@ -53,15 +53,17 @@ with sync_playwright() as p:
  page.locator('#accept-ads').click()
  page.wait_for_function('window.dataLayer && window.dataLayer.length >= 2')
  assert page.locator('script[src*="AW-17961565555"]').count()==1
- page.evaluate('document.querySelector(".affiliate").addEventListener("click",e=>e.preventDefault())')
- page.locator('.affiliate').first.click()
+ page.evaluate('document.querySelectorAll(".affiliate").forEach(a=>a.addEventListener("click",e=>e.preventDefault()))')
+ for link in page.locator('.affiliate').all():
+  link.click()
  events=page.evaluate('window.dataLayer.map(x=>Array.from(x))')
- clicks=[x for x in events if x[0]=='event'];assert len(clicks)==1
- assert clicks[0][1]=='conversion'
- assert clicks[0][2]['send_to']=='AW-17961565555/98brCNTlyZ4cEPP63vRC'
- assert clicks[0][2]['event_label']=='outbound_affiliate_click'
- assert clicks[0][2]['placement']=='hero'
- assert 'value' not in clicks[0][2] and 'transaction_id' not in clicks[0][2]
+ clicks=[x for x in events if x[0]=='event'];assert len(clicks)==3
+ assert [event[2]['placement'] for event in clicks]==['hero','details','final']
+ for event in clicks:
+  assert event[1]=='conversion'
+  assert event[2]['send_to']=='AW-17961565555/98brCNTlyZ4cEPP63vRC'
+  assert event[2]['event_label']=='outbound_affiliate_click'
+  assert 'value' not in event[2] and 'transaction_id' not in event[2]
  page.reload();assert page.evaluate('localStorage.getItem("mega7-ads-choice-v1")')=='granted'
  page.locator('#privacy-settings').click();page.locator('#decline-ads').click();page.wait_for_load_state()
  assert page.locator('script[src*="googletagmanager"]').count()==0
@@ -71,5 +73,5 @@ with sync_playwright() as p:
  assert page.locator('.affiliate').first.get_attribute('href')==AFF
  page.locator('summary').first.click();assert page.locator('details').first.get_attribute('open') is not None
  context.close(); browser.close()
-(OUT/'smoke-results.json').write_text(json.dumps({'pages':results,'events':'passed with external requests stubbed','no_js':'passed','console_errors':0},indent=2))
+(OUT/'smoke-results.json').write_text(json.dumps({'pages':results,'events':'all 3 placements passed with external requests stubbed','no_js':'passed','console_errors':0},indent=2))
 print(f'PASS: {len(results)} page/viewport checks; consent, exact affiliate links, event payload, withdrawal, no-JS, local navigation, console.')

@@ -47,7 +47,7 @@ Ele é um check manual; não impede sozinho um push ou publicação no GitHub Pa
 - `docs/03-google-ads.md`: plano sem campanhas ativas.
 - `docs/04-testes.md`: resultados e limitações reais.
 
-**Publicação autorizada pelo proprietário; configuração do GitHub Pages ainda precisa ser conferida.**
+**A publicação anterior foi autorizada para a versão 2.0. A versão 2.1 está em desenvolvimento e exige nova autorização antes de publicar.**
 O CNAME e os arquivos originais de imagens foram preservados. As duas imagens existentes do produto são usadas na nova apresentação; imagens de antes/depois e avaliações continuam fora da página. Confirmar direitos de uso e atualidade da embalagem antes de publicar.
 
 ## Versão atual da landing ProDentim
@@ -57,3 +57,20 @@ Consulte `docs/06-landing-page.md` para a entrega mais recente e capturas comple
 Com o servidor local iniciado, `python3 tools/landing_page.py` verifica as seis seções
 em cinco resoluções e gera evidências em `/workspace/reports/mega7/landing-v2`.
 Relatórios anteriores descrevem versões históricas preservadas nos backups.
+
+## Mega7Products 2.1 — versão para revisão
+
+Branch `development/mega7products-2-1`. Auditoria anterior às alterações em
+`docs/08-auditoria-v2-1.md`; entrega, imagens, rastreamento e testes em
+`docs/09-entrega-v2-1.md`. Capturas antes/depois em `/workspace/reports/mega7/v2-1`.
+Três CTAs e a mesma ação de clique; isso não mede vendas.
+Com o servidor da aplicação ativo, execute:
+
+```sh
+python3 tools/smoke.py
+python3 tools/landing_page.py
+```
+
+Os relatórios desses dois testes vão para `/workspace/reports/mega7/v2-1/after`.
+Use `MEGA7_TEST_URL` ou `MEGA7_REPORT_DIR` para alterar endereço/pasta de evidências.
+A versão 2.1 não foi publicada e a branch main permanece na versão anterior.
